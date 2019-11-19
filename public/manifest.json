@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Inlämningsuppgifter",
+  "name": "Skapade med create-react-app",
   "icons": [
     {
       "src": "favicon.ico",

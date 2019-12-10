@@ -5,3 +5,27 @@ https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/load_event
 
 - for after!
 https://redux.js.org/basics/actions
+
+fileInputHandler = event => {
+        let r = new FileReader();
+        r.onloadend = () => {
+            this.setState({imgSrc: r.result, isLoading: false});
+        }
+        r.readAsDataURL(event.target.files[0]);
+        this.setState({isLoading: true});
+    }
+    
+    postImageHandler = event => {
+        event.preventDefault();
+        this.setState({isLoading: true});
+        const content = {
+            name: this.refs.picName.value,
+            data: this.state.imgSrc
+        };
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("loadend", res => {
+            this.setState({isLoading: false});
+        });
+        xhr.open("POST", api+"image");
+        xhr.send(JSON.stringify(content));
+    }

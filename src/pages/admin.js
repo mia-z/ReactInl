@@ -1,24 +1,25 @@
 import React from 'react';
-import AdminPanelPictures from "./adminpictures"
-import { Link, Switch, Route } from "react-router-dom";
+import AdminPanelProduct from "./admin-addproduct";
+import AdminPanelBrand from "./admin-addbrand";
+import AdminPanelCategory from "./admin-addcategory"
+import { Tabs, Tab } from "react-bootstrap";
 
 class AdminPanel extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
-        const { match } = this.props;
-        console.log(match.url)
         return(
-            <main className="container" style={{backgroundColor: "whitesmoke"}}>
-                admin panel
-                <Link to={`${match.url}/pictures`}>Pictures</Link>
-                <Switch>
-                    <Route path="/Admin/Pictures">
-                        <AdminPanelPictures />
-                    </Route>
-                </Switch>
+            <main className="container">
+               <Tabs defaultActiveKey="product-add" id="tab-root">
+                   <Tab eventKey="product-add" title="Add Product">
+                       <AdminPanelProduct/>
+                   </Tab>
+                   <Tab eventKey="brand-add" title="Add Brand">
+                        <AdminPanelBrand/>
+                   </Tab>
+                   <Tab eventKey="category-add" title="Add Category">
+                       <AdminPanelCategory/>
+                   </Tab>
+               </Tabs>
             </main>
         );
     }

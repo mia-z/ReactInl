@@ -3,23 +3,23 @@ import { api } from "../res";
 import axios from "axios";
 import { Dimmer, Loader, Card, Grid, Segment } from 'semantic-ui-react'
 
-class Categories extends React.Component {
+class Brands extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: ["none"],
+            brands: ["none"],
             isLoading: true
         }
     }
 
     componentDidMount() {
-        this.getCats();
+        this.getBrands();
     }
 
-    getCats = () => {
-        axios.get(api+"Categories/")
+    getBrands = () => {
+        axios.get(api+"Brands/")
             .then(response => {
-                this.setState({categories: response.data, isLoading: false})
+                this.setState({brands: response.data, isLoading: false})
             })
             .catch(error => {
                 console.log(error);
@@ -27,7 +27,7 @@ class Categories extends React.Component {
     }
 
     render() {
-        const { isLoading, categories } = this.state;
+        const { isLoading, brands } = this.state;
         if (isLoading) return(
             <main className="container">
                 <Segment id="load-container-segment">
@@ -41,7 +41,7 @@ class Categories extends React.Component {
             <main className="container">
                 <Grid columns={4}>
                     <Grid.Row stretched>
-                        {categories.map((brands, key) => 
+                        {brands.map((brands, key) => 
                             <Grid.Column className="my-3" key={key}>
                                 <Card 
                                     image={brands.data}
@@ -57,4 +57,4 @@ class Categories extends React.Component {
     }
 }
 
-export default Categories;
+export default Brands;
